@@ -39,7 +39,7 @@ namespace FixRussianCAnalyzer
             }
         }
 
-        public static readonly Regex RussianCInEnglishWord = new Regex(@"[A-Za-z][Сс]|[Сс][A-Za-z]", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
+        public static readonly Regex RussianCInEnglishWord = new Regex(@"(?<!\\)[A-Za-z][Сс]|[Сс][A-Za-z]", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
         public static readonly Regex EnglishCInRussianWord = new Regex(@"[А-Яа-яЁё][Cc]|[Cc][А-Яа-яЁё]", RegexOptions.Compiled | RegexOptions.Multiline | RegexOptions.CultureInvariant | RegexOptions.IgnoreCase);
 
         public static readonly Regex[] Regexes = new[]

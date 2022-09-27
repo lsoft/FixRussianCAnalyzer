@@ -18,7 +18,7 @@ namespace FixRussianCAnalyzer.Test
         }
 
         [TestMethod]
-        public async Task RussianC_Small_NoMute()
+        public async Task RussianC_Small()
         {
             var test = @"
     using System;
@@ -61,7 +61,7 @@ namespace FixRussianCAnalyzer.Test
         }
 
         [TestMethod]
-        public async Task RussianC_Big_NoMute()
+        public async Task RussianC_Big()
         {
             var test = @"
     using System;
@@ -104,7 +104,7 @@ namespace FixRussianCAnalyzer.Test
         }
 
         [TestMethod]
-        public async Task EnglishC_Small_NoMute()
+        public async Task EnglishC_Small()
         {
             var test = @"
     using System;
@@ -147,7 +147,7 @@ namespace FixRussianCAnalyzer.Test
         }
 
         [TestMethod]
-        public async Task EnglishC_Big_NoMute()
+        public async Task EnglishC_Big()
         {
             var test = @"
     using System;
@@ -188,5 +188,25 @@ namespace FixRussianCAnalyzer.Test
                 ;
             await VerifyCS.VerifyCodeFixAsync(test, new[] { expected0, expected1, expected2 }, fixtest);
         }
+
+        [TestMethod]
+        public async Task RussianC_Small_SpecialSymbol()
+        {
+            var test = @"
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Diagnostics;
+
+    namespace ConsoleApplication1
+    {
+        //bla\tс bla\rс bla\nс
+    }";
+
+            await VerifyCS.VerifyAnalyzerAsync(test);
+        }
+
     }
 }
