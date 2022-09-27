@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <IncludeBuildOutput>false</IncludeBuildOutput>
+    <SuppressDependenciesWhenPacking>true</SuppressDependenciesWhenPacking>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageId>FixRussianCAnalyzer</PackageId>
+    <PackageVersion>0.1</PackageVersion>
+    <Authors>ls</Authors>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/lsoft/FixRussianCAnalyzer</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/lsoft/FixRussianCAnalyzer</RepositoryUrl>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <Description>This is an analyzer and codefixer for Russian C in English word and vice versa.</Description>
+    <Copyright>(c) lsoft 2022</Copyright>
+    <PackageTags>FixRussianC, analyzers, codefixer</PackageTags>
+    <DevelopmentDependency>true</DevelopmentDependency>
+    <NoPackageAnalysis>true</NoPackageAnalysis>
+
+    <TargetsForTfmSpecificContentInPackage>$(TargetsForTfmSpecificContentInPackage);_AddAnalyzersToOutput</TargetsForTfmSpecificContentInPackage>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\FixRussianCAnalyzer.CodeFixes\FixRussianCAnalyzer.CodeFixes.csproj" />
+    <ProjectReference Include="..\FixRussianCAnalyzer\FixRussianCAnalyzer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="tools\*.ps1" CopyToOutputDirectory="Always" Pack="true" PackagePath="" />
+  </ItemGroup>
+
+  <Target Name="_AddAnalyzersToOutput">
+    <ItemGroup>
+      <TfmSpecificPackageFile Include="$(OutputPath)\FixRussianCAnalyzer.dll" PackagePath="analyzers/dotnet/cs" />
+      <TfmSpecificPackageFile Include="$(OutputPath)\FixRussianCAnalyzer.CodeFixes.dll" PackagePath="analyzers/dotnet/cs" />
+    </ItemGroup>
+  </Target>
+
+</Project>
